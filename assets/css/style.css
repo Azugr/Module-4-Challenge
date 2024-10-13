@@ -15,12 +15,11 @@ html {
 
 body {
   min-height: 100%;
-  line-height: 1.6;
+  line-height: 1;
   font-family: sans-serif;
-  background-color: var(--light);
 }
 
-h1,
+​h1,
 h2,
 h3,
 h4,
@@ -29,7 +28,7 @@ h6 {
   font-size: 100%;
 }
 
-input,
+​input,
 select,
 option,
 optgroup,
@@ -41,13 +40,16 @@ code {
   font-family: inherit;
 }
 
-ol,
+​ol,
 ul {
   list-style: none;
 }
 
 /*
-  Universal Styles
+  General Styles
+*/
+/*
+  Universal
 */
 :root {
   --light: #fff;
@@ -63,67 +65,21 @@ ul {
 }
 
 * {
-  transition: background-color ease-in 0.5s, color ease-in 0.5s;
+  transition: background-color ease-in .5s;
 }
 
 /*
-  Typography
-*/
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-label {
-  font-size: 1.1rem;
-}
-
-/*
-  Header and Footer Styling
+  Tags
 */
 header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 1rem;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
-h1 {
-  margin: 0;
-}
-
-button#toggleMode {
-  position: absolute;  /* Position it relative to the page */
-  top: 20px;  /* Distance from the top */
-  right: 20px;  /* Distance from the right */
-  padding: 10px 20px;
-  background-color: var(--action);
-  color: var(--light);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-button#toggleMode:hover {
-  background-color: var(--action-accent);
-}
-
+header,
 footer {
   padding: 2rem;
-  text-align: center;
 }
 
 main {
@@ -132,11 +88,10 @@ main {
   justify-content: center;
   align-items: stretch;
   border-top: double 1rem;
-  padding: 20px;
 }
 
 /*
-  Light and Dark Mode Styles
+  Classes
 */
 .dark header,
 .dark footer {
@@ -144,10 +99,11 @@ main {
   color: var(--light);
 }
 
+
 .dark main {
   background-color: var(--dark-accent);
   color: var(--light);
-  border-top: solid 0.5rem var(--disabled);
+  border-top: solid .5rem var(--disabled);
 }
 
 .light header,
@@ -162,40 +118,14 @@ main {
 }
 
 /*
-  Button Styles
+  IDs
 */
-.btn {
-  padding: 10px 20px;
-  background-color: var(--action);
-  color: var(--light);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn:hover {
-  background-color: var(--action-accent);
-  transform: scale(1.05);
-}
-
 #toggle {
-  font-size: 1.5rem;
+  font-size: 1.52em;
   margin: 0;
   padding: 0;
   background: transparent;
   border: none;
   cursor: pointer;
-  text-shadow: 0px 0px 0.5rem var(--light-accent);
+  text-shadow: 0px 0px .5rem var(--light-accent);
 }
-
-input:focus,
-textarea:focus {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-input,
-textarea {
-  margin-bottom: 1.5rem; 
-}
-

@@ -1,5 +1,6 @@
 // Select the main element and the back button element
 const mainElement = document.querySelector('main');
+const footerElement = document.querySelector('footer');
 const backButton = document.getElementById('back');
 
 // Function to create a blog post element and append it to the DOM
@@ -26,9 +27,17 @@ function createPostElement(post) {
 
 // Function to handle the case where there are no blog posts
 function noPostsMessage() {
-    const message = document.createElement('p');
-    message.textContent = 'No blog posts yet...';
-    mainElement.appendChild(message);
+    // Check if the message already exists
+    const existingMessage = document.getElementById('no-posts-message');
+    if (!existingMessage) {
+        const message = document.createElement('p');
+        message.textContent = 'No blog posts yet...';
+        message.id = 'no-posts-message';  // Add an ID to target with CSS
+
+        // Append the message to the no-posts-message-container instead
+        const messageContainer = document.getElementById('no-posts-message-container');
+        messageContainer.appendChild(message);
+    }
 }
 
 // Function to render the list of blog posts
@@ -45,10 +54,28 @@ function renderBlogList() {
     }
 }
 
-// Call the `renderBlogList` function to display the posts
-renderBlogList();
+document.addEventListener('DOMContentLoaded', () => {
+    // Call the `renderBlogList` function to display the posts (if applicable)
+    renderBlogList(); 
 
-// Redirect to the home page when the back button is clicked
-backButton.addEventListener('click', () => {
-    redirectPage(); // This function is in logic.js and redirects to the home page
+    const toggleButton = document.getElementById('toggle'); // Ensure the ID matches
+
+    // Toggle dark mode on button click
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode'); // Correct method
+        
+        // Change the button text based on the mode
+        if (document.body.classList.contains('dark-mode')) {
+            toggleButton.textContent = '☀️ '; // Update icon/text
+        } else {
+            toggleButton.textContent = '🌙 '; // Update icon/text
+        }
+    });
+    
+    // Redirect to the home page when the back button is clicked
+    backButton.addEventListener('click', () => {
+        redirectPage(); // This function should be defined to handle the redirection
+    });
 });
+
+

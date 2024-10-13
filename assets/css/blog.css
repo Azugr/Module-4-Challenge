@@ -1,122 +1,133 @@
-/*
-  Blog Styles
-*/
-
-/*
-  Tags
-*/
-a {
-  text-decoration: none;
+/* Light Mode Styles */
+:root {
+  --background-color: #e0f7fa;  
+  --text-color: #000000;       
+  --post-background-color: #bbdefb; 
+  --footer-background-color: #b3e5fc; 
+  --container-background-color: #ffffff; 
+  --button-background-color: #ffffff;
+  --button-text-color: #000000;
 }
 
-article {
-  flex: 1 1 50%;
-  border: 1px solid #ccc; /* Softer border */
-  border-radius: 8px;
-  padding-bottom: 3rem; /* Added missing semicolon */
-  position: relative;
+/* Apply the background color to the body */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+/* Dark Mode Styles */
+body.dark-mode {
+  --background-color: #121212;  
+  --text-color: #ffffff;       
+  --post-background-color: #103469; 
+  --footer-background-color: #1e88e5; 
+  --container-background-color: #1565c0; 
+  --button-background-color: #0d47a1; 
+  --button-text-color: #ffffff;
 }
 
-article blockquote {
-  margin: 1rem;
-  margin-bottom: 2rem;
-  font-style: italic;
+/* Dark Mode Styles */
+body.dark-mode {
+  --background-color: #1565c0;  
+  --text-color: #ffffff;        
+  --post-background-color: #0d47a1;  
+  --footer-background-color: #1e88e5; 
+}
+/* General header and footer styling */
+header {
+  padding-bottom: 1rem;  
+  text-align: center;   
+  border-bottom: none;  
 }
 
-article h2 {
-  text-transform: capitalize;
-  border-bottom: thin solid;
+/* Header buttons (Light/Dark mode and Back button) */
+.header-buttons button {
+  background-color: var(--post-background-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold; 
 }
 
-article p {
-  position: absolute;
-  left: 1rem;
-  bottom: 0.5rem;
-  opacity: 0.75;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 2rem;
-  background-color: var(--dark-accent);
-  color: var(--light);
-  text-align: center;
-}
-
-li {
-  margin: 1rem;
+.header-buttons button:hover {
+  opacity: 0.9; 
 }
 
 main {
-  flex-direction: column;
-  gap: 1em;
-  padding: 1rem;
-  height: calc(100vh - 18rem);
-  overflow-y: scroll;
-  justify-content: flex-start;
-  padding-bottom: 4rem; /* Added space for footer */
+  min-height: calc(100vh - 90%); 
+  padding-bottom: 2rem; 
 }
 
-ul {
-  list-style: none;
+#posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    min-height: 100px; 
 }
 
-/*
-  Classes
-*/
-.card {
-  flex: 1 1 50%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for card */
-  background-color: #fff; /* White background for contrast */
-  padding: 1rem;
+.post-card {
+  box-sizing: border-box;
+  background-color: var(--post-background-color);
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%; 
+  margin-bottom: 1%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.dark a {
-  color: var(--light);
+.post-card h2 {
+  margin-bottom: 5px;
+  font-size: 1.5rem;  
 }
 
-.light footer {
-  border-top: double 1rem;
+.post-card p {
+  margin-bottom: 3px;
 }
 
-.light a {
-  color: var(--dark);
-}
-
-/*
-  IDs
-*/
-#back {
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-right: 1rem;
-  border: groove black;
+.post-card:hover {
   background-color: var(--dark-accent);
-  color: var(--light);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
-#back:active {
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
-  background-color: var(--dark-accent);
+.posted-by {
+  font-style: italic;
+  color: black;
+  font-size: 0.9rem;
 }
 
-#back:hover {
-  transform: scale(1.05); /* Slightly enlarges the button */
-  border-style: inset;
-  background-color: var(--dark-accent-action);
+/* Dark Mode - Posted by text */
+body.dark-mode .posted-by {
+  color: #ffffff;  
+  font-style: italic;
 }
 
-#love {
+#no-posts-message {
   text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  padding: 1rem 2rem;
+  background-color: var(--light-accent);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #222;
+  width: fit-content;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  article {
-    flex: 1 1 100%; /* Full width on smaller screens */
-  }
+footer {
+  background-color: var(--footer-background-color);
+  border-top: double 1rem black; 
+  padding: 1rem 0;
+  text-align: center;          
+}
+
+footer p {
+  margin:0.5rem 0;
 }
