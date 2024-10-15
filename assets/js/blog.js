@@ -1,7 +1,6 @@
 // Select the main element and the back button element
 const mainElement = document.querySelector('main');
 const footerElement = document.querySelector('footer');
-const backButton = document.getElementById('back');
 
 // Function to create a blog post element and append it to the DOM
 function createPostElement(post) {
@@ -27,16 +26,11 @@ function createPostElement(post) {
 
 // Function to handle the case where there are no blog posts
 function noPostsMessage() {
-    // Check if the message already exists
-    const existingMessage = document.getElementById('no-posts-message');
-    if (!existingMessage) {
-        const message = document.createElement('p');
-        message.textContent = 'No blog posts yet...';
-        message.id = 'no-posts-message';  // Add an ID to target with CSS
 
-        // Append the message to the no-posts-message-container instead
-        const messageContainer = document.getElementById('no-posts-message-container');
-        messageContainer.appendChild(message);
+    // Get the message container and make it visible if it hasn't already been displayed
+    const messageContainer = document.getElementById('no-posts-message-container');
+    if (messageContainer) {
+        messageContainer.style.display = 'block';
     }
 }
 
@@ -44,38 +38,45 @@ function noPostsMessage() {
 function renderBlogList() {
     // Get the posts from localStorage
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
-
+    if (!Array.isArray(posts)) {
+        console.error('Invalid posts data in localStorage');
+        return; // Exit the function if the data is invalid
+    }
+    
     if (posts.length === 0) {
         // If there are no posts, show a message
         noPostsMessage();
     } else {
+        // Hide the 'no-posts-message-container' if there are posts
+        const messageContainer = document.getElementById('no-posts-message-container');
+        if (messageContainer) {
+            messageContainer.style.display = 'none';
+        }
+
         // Loop through the posts and create a post element for each one
         posts.forEach(post => createPostElement(post));
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Call the `renderBlogList` function to display the posts (if applicable)
-    renderBlogList(); 
+// Define the redirect URL globally
+const redirectURL = 'http://localhost:5500/index.html';
 
-    const toggleButton = document.getElementById('toggle'); // Ensure the ID matches
-
-    // Toggle dark mode on button click
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode'); // Correct method
-        
-        // Change the button text based on the mode
-        if (document.body.classList.contains('dark-mode')) {
-            toggleButton.textContent = '☀️ '; // Update icon/text
-        } else {
-            toggleButton.textContent = '🌙 '; // Update icon/text
-        }
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const backButton = document.getElementById('back');
     
-    // Redirect to the home page when the back button is clicked
-    backButton.addEventListener('click', () => {
-        redirectPage(); // This function should be defined to handle the redirection
-    });
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            console.log('Back button clicked');
+            // Use the globally defined redirectURL
+            window.location.href = redirectURL;
+        });
+    } else {
+        console.error('Back button not found!');
+    }
+
+    if (typeof renderBlogList === 'function') {
+        renderBlogList(); 
+    } else {
+        console.error('renderBlogList function is not defined!');
+    }
 });
-
-
